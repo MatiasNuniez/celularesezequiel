@@ -41,7 +41,11 @@ export const Rotos = () => {
 
   const getData = async () => {
     try {
-      const res = await axios.get('https://backlacentral.onrender.com/api/rotos')
+      const res = await axios.get('https://backlacentral.onrender.com/api/rotos', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       const dataRes = await res.data
       setData(dataRes)
     } catch (error) {
@@ -76,24 +80,26 @@ export const Rotos = () => {
     try {
       if (op === 1) {
         if ((modelo !== '') && (componentes !== '') && (local !== '')) {
-          await axios({
-            method: 'post',
-            url: 'https://backlacentral.onrender.com/api/rotos',
-            data: {
-              modelo: modelo,
-              componentes: componentes,
-              local: local
+          const data = {
+            modelo: modelo,
+            componentes: componentes,
+            local: local
+          }
+          await axios.post('https://backlacentral.onrender.com/api/rotos', data, {
+            headers: {
+              'Authorization': `Bearer ${token}`
             }
           }).then(alert('Elemento ingresado correctamente'), setModelo(''), setComponentes(''), setLocal(''))
         } else { alert('Complete todos los campos') }
       } else if (op === 2) {
-        await axios({
-          method: 'put',
-          url: `https://backlacentral.onrender.com/api/rotos/${id}`,
-          data: {
-            modelo: modelo,
-            componentes: componentes,
-            local: local
+        const data = {
+          modelo: modelo,
+          componentes: componentes,
+          local: local
+        }
+        await axios.put(`https://backlacentral.onrender.com/api/rotos/${id}`, data, {
+          headers: {
+            'Authorization': `Bearer ${token}`
           }
         }).then(alert('Elementos editados correctamente'), setModelo(''), setComponentes(0), setLocal(''), setId(0))
       }
@@ -105,9 +111,10 @@ export const Rotos = () => {
 
   const deleteItem = async (id) => {
     try {
-      await axios({
-        method: 'delete',
-        url: `https://backlacentral.onrender.com/api/rotos/${id}`
+      await axios.delete(`https://backlacentral.onrender.com/api/rotos/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       }).then(alert('Elemento eliminado correctamente'))
     } catch (error) {
       alert(error)

@@ -45,7 +45,11 @@ export const Prestados = () => {
 
   const getData = async () => {
     try {
-      const res = await axios.get('https://backlacentral.onrender.com/api/prestados')
+      const res = await axios.get('https://backlacentral.onrender.com/api/prestados', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       const dataRes = await res.data
       setData(dataRes)
     } catch (error) {
@@ -83,32 +87,36 @@ export const Prestados = () => {
   const postAndEdit = async (id, nombre, numero, modelo, razon, local) => {
     if (op === 1) {
       if ((nombre !== '') && (numero !== '') && (modelo !== '') && (razon !== '') && (local !== '') && (numero.length === 10)) {
-        await axios({
-          method: 'post',
-          url: 'https://backlacentral.onrender.com/api/prestados',
-          data: {
-            nombre: nombre,
-            numero: numero,
-            modelo: modelo,
-            razon: razon,
-            local: local
-          }
-        })
-          .then(alert('Elementos ingresados correctamente'), setNombre(''), setNumero(''), setModelo(''), setRazon(''), setLocal(''))
-          .catch(error => alert(`No se pudo ingresar el elemento por el siguiente error ${error}`))
-      } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
-    } else if (op === 2) {
-      await axios({
-        method: 'put',
-        url: `https://backlacentral.onrender.com/api/prestados/${id}`,
-        data: {
+        const data = {
           nombre: nombre,
           numero: numero,
           modelo: modelo,
           razon: razon,
           local: local
         }
-      })
+        await axios.post('https://backlacentral.onrender.com/api/prestados',
+          data, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+          .then(alert('Elementos ingresados correctamente'), setNombre(''), setNumero(''), setModelo(''), setRazon(''), setLocal(''))
+          .catch(error => alert(`No se pudo ingresar el elemento por el siguiente error ${error}`))
+      } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
+    } else if (op === 2) {
+      const data = {
+        nombre: nombre,
+        numero: numero,
+        modelo: modelo,
+        razon: razon,
+        local: local
+      }
+      await axios.put(`https://backlacentral.onrender.com/api/prestados/${id}`, data,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
         .then(alert('Elementos editados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setRazon(''), setId(0))
         .catch(error => alert('No se pudo eliminar el elemento'))
     }
@@ -116,9 +124,10 @@ export const Prestados = () => {
 
   const deleteItem = async (id) => {
     try {
-      await axios({
-        url: `https://backlacentral.onrender.com/api/prestados/${id}`,
-        method: 'delete'
+      await axios.delete(`https://backlacentral.onrender.com/api/prestados/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       })
         .then(alert('Elemento eliminado correctamente'))
         .catch(error => alert('No se pudo eliminar el elemento'))
