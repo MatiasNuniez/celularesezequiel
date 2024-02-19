@@ -44,7 +44,7 @@ export const Login = () => {
 
     return (
         <div className='container'>
-            {alert(typeof(token), token) ?
+            {console.log(token)?
                 navigate('/')
                 : <div className='Login'>
                     <img src={imagen} id='img-login' alt='img-login' />
