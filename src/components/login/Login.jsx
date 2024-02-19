@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export const Login = () => {
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
-    const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
+    const [token, setToken] = useState(localStorage.getItem('token') || '')
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -44,7 +44,7 @@ export const Login = () => {
 
     return (
         <div className='container'>
-            {token !== null?
+            {token !== ''?
                 navigate('/')
                 : <div className='Login'>
                     <img src={imagen} id='img-login' alt='img-login' />
