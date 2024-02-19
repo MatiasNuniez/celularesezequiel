@@ -31,6 +31,8 @@ export const Rotos = () => {
 
   const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
 
+  const [user, setUser] = useState(localStorage.getItem('user') || '')
+
   const [data, setData] = useState([])
 
   const realData = data.filter((p) => (`${p.local}` === check))
@@ -43,7 +45,8 @@ export const Rotos = () => {
     try {
       const res = await axios.get('https://backlacentral.onrender.com/api/rotos', {
         headers: {
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`,
+          'user':user
         }
       })
       const dataRes = await res.data
@@ -87,7 +90,8 @@ export const Rotos = () => {
           }
           await axios.post('https://backlacentral.onrender.com/api/rotos', data, {
             headers: {
-              'Authorization': `Bearer ${token}`
+              'Authorization': `Bearer ${token}`,
+              'user':user
             }
           }).then(alert('Elemento ingresado correctamente'), setModelo(''), setComponentes(''), setLocal(''))
         } else { alert('Complete todos los campos') }
@@ -99,7 +103,8 @@ export const Rotos = () => {
         }
         await axios.put(`https://backlacentral.onrender.com/api/rotos/${id}`, data, {
           headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
+            'user':user
           }
         }).then(alert('Elementos editados correctamente'), setModelo(''), setComponentes(0), setLocal(''), setId(0))
       }
@@ -113,7 +118,8 @@ export const Rotos = () => {
     try {
       await axios.delete(`https://backlacentral.onrender.com/api/rotos/${id}`, {
         headers: {
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`,
+          'user':user
         }
       }).then(alert('Elemento eliminado correctamente'))
     } catch (error) {

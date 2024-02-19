@@ -25,6 +25,7 @@ export const Login = () => {
                 console.log(data);
                 if (data.token !== undefined) {
                     localStorage.setItem('tokensantarosa30', data.token)
+                    localStorage.setItem('user', user)
                     navigate('/')
                 } else {
                     alert('Usuario o contrasena invalidos')

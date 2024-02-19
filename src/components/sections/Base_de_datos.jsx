@@ -33,6 +33,8 @@ export const DDBB = () => {
 
   const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
 
+  const [user, setUser] = useState(localStorage.getItem('user') || '')
+
   const [data, setData] = useState([])
 
   const navigate = new useNavigate()
@@ -46,7 +48,8 @@ export const DDBB = () => {
       const res = await axios.get('https://backlacentral.onrender.com/api/general',
         {
           headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
+            'user':user
           }
         })
       const dataRes = await res.data
@@ -93,7 +96,8 @@ export const DDBB = () => {
           }
           await axios.post('https://backlacentral.onrender.com/api/general', data, {
             headers: {
-              'Authorization': `Bearer ${token}`
+              'Authorization': `Bearer ${token}`,
+              'user':user
             },
           }).then(alert('Elementos ingresados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''))
             .catch(error => {
@@ -109,7 +113,8 @@ export const DDBB = () => {
         }
         await axios.put(`https://backlacentral.onrender.com/api/general/${id}`, data, {
           headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
+            'user':user
           }
         }
         ).then(alert('Elementos edit ados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setId(0))
@@ -124,7 +129,8 @@ export const DDBB = () => {
     try {
       await axios.delete(`https://backlacentral.onrender.com/api/general/${id}`, {
         headers: {
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`,
+          'user':user
         },
       }).then(alert('Elemento eliminado correctamente'))
     } catch (error) {
