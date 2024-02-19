@@ -44,9 +44,7 @@ export const Login = () => {
 
     return (
         <div className='container'>
-            {token !== '' ?
-                navigate('/')
-                : <div className='Login'>
+            {<div className='Login'>
                     <img src={imagen} id='img-login' alt='img-login' />
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
