@@ -10,12 +10,13 @@ export const OptionsIndex = () => {
   const navigate = new useNavigate()
 
   useEffect(() => {
+    setToken(localStorage.getItem('tokensantarosa30'))
   }, [])
   
   return (
 
     <div className='container'>
-      { token !== '' ? 
+      { token !== null ? 
       <div className='contentIndex'>
       <a className='aCardIndex' href="/Base_de_datos">
       <div className="card" style={{width:'18rem'}}>

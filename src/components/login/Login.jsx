@@ -15,6 +15,7 @@ export const Login = () => {
             try {
                 const res = await axios({
                     method: 'post',
+                    withCredentials:true,
                     url: 'https://backlacentral.onrender.com/api/login',
                     data: {
                         user: user,
