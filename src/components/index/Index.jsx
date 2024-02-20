@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const OptionsIndex = () => {
 
-  const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
+  const [token, setToken] = useState(localStorage.getItem('tokensantarosa30'))
   const navigate = new useNavigate()
 
   useEffect(() => {
