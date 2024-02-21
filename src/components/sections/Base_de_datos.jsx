@@ -96,6 +96,15 @@ export const DDBB = () => {
             modelo: modelo,
             local: local
           }
+
+          // axios.post('URL_DE_TU_API/tareas', { nombre: 'Nueva Tarea' })
+          // .then(response => {
+          //   setTasks([...tasks, response.data]); // Agregar la nueva tarea a la lista de tareas en el cliente
+          // })
+          // .catch(error => {
+          //   console.error('Error al agregar la tarea:', error);
+          // });
+
           await axios.post('https://backlacentral.onrender.com/api/general', newData, {
             withCredentials: true,
             headers: {
@@ -103,7 +112,7 @@ export const DDBB = () => {
               'Authorization': `Bearer ${token}`,
               'user': user
             }
-          }).then((res) => {
+          }).then(res => {
               console.log(res.data)
               // setData([...data, res.data]),
               // console.log(data),
