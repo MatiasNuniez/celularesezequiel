@@ -98,19 +98,22 @@ export const DDBB = () => {
             state:true
           }
 
-          const res = await axios.post('https://backlacentral.onrender.com/api/general', newData, {
+          await axios.post('https://backlacentral.onrender.com/api/general', newData, {
             withCredentials: true,
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`,
               'user': user
             }
-          })
-          const dataRes = await res.data
-          
-          console.log(dataRes);
-          setData(...data, dataRes)
-
+          }).then(
+              data.push(newData),
+              console.log(data),
+              alert('Elementos ingresados correctamente'),
+              setNombre(''),
+              setNumero(''),
+              setModelo(''),
+              setLocal(''))
+            .catch(error => { alert('Error 403, no tiene permisosa') })
         } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
       } else if (op === 2) {
         const newData = {
