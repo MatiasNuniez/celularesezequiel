@@ -128,7 +128,11 @@ export const DDBB = () => {
             'user': user
           }
         }).then(res => {
-          alert('Elementos editados correctamente'),setData(res.data), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setId(0)
+          alert('Elementos editados correctamente')
+          setData(res.data)
+          setNombre(''), setNumero('')
+          setModelo(''), setLocal('')
+          setId(0)
         }
         )
       }
