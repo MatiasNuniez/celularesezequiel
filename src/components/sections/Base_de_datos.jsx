@@ -113,8 +113,8 @@ export const DDBB = () => {
               'user': user
             }
           }).then(res => {
-              setData([...data, res.data])
-              // console.log(data),
+              setData([...data, res.data]),
+              console.log(data)
               // alert('Elementos ingresados correctamente'),
               // setNombre(''),
               // setNumero(''),
