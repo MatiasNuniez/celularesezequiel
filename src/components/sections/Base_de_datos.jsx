@@ -155,6 +155,7 @@ export const DDBB = () => {
         }
       }).then(res => {
         const newData = data.filter(item => item._id !== id)
+        console.log(newData);
         setData(newData)
         alert('Elemento eliminado correctamente')
       })
