@@ -128,8 +128,8 @@ export const DDBB = () => {
             'user': user
           }
         }).then(res => {
-          console.log(res.data._id);
-          console.log(res.data);
+          console.log(res.data._id)
+          console.log(res.data)
           alert('Elementos editados correctamente')
           setNombre('')
           setNumero('')
