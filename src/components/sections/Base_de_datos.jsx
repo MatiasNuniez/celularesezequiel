@@ -106,7 +106,7 @@ export const DDBB = () => {
                 'user': user
               }})
   
-              console.log(res.data);
+              console.log(res.data[0]);
   
           } catch (error) {
             console.error(error);
