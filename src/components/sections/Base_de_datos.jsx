@@ -104,8 +104,7 @@ export const DDBB = () => {
               'user': user
             }
           }).then(res => {
-              console.log(res.data);
-              // setData([...data, res.data[0]])
+              setData([...data, res.data[0]])
               alert('Elementos ingresados correctamente')
               setNombre('')
               setNumero('')
@@ -129,8 +128,13 @@ export const DDBB = () => {
             'user': user
           }
         }).then(res => {
-          console.log(res.data);
-          // setData(res.data)
+          const updateData = [...data]
+          const itemToUpdate = updateData.find(item => item.id === res.data._id);
+          if (itemToUpdate) {
+            itemToUpdate.date = res.data;
+            // Actualizar el estado con el nuevo array modificado
+            setData(updatedItems);
+          }
           alert('Elementos editados correctamente')
           setNombre('')
           setNumero('')
