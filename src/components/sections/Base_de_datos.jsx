@@ -128,10 +128,12 @@ export const DDBB = () => {
             'user': user
           }
         }).then(res => {
-          alert('Elementos editados correctamente')
           setData(res.data)
-          setNombre(''), setNumero('')
-          setModelo(''), setLocal('')
+          alert('Elementos editados correctamente')
+          setNombre('')
+          setNumero('')
+          setModelo('')
+          setLocal('')
           setId(0)
         }
         )
@@ -152,9 +154,9 @@ export const DDBB = () => {
           'user': user
         }
       }).then(res => {
-        alert('Elemento eliminado correctamente')
         const newData = data.filter(item => item._id !== id)
         setData(newData)
+        alert('Elemento eliminado correctamente')
       })
       .catch(error => alert(error))
     } catch (error) {
