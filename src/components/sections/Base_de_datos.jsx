@@ -95,21 +95,17 @@ export const DDBB = () => {
             numero: numero,
             modelo: modelo,
             local: local,
-            state:true
+            state: true
           }
-          try {
-            const res = await axios.post('https://backlacentral.onrender.com/api/general', newData, {
-              withCredentials: true,
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-                'user': user
-              }})
-              data.push(res.data[0])
-              console.log(data);
-          } catch (error) {
-            console.error(error);
-          }
+          await axios.post('https://backlacentral.onrender.com/api/general', newData, {
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+              'user': user
+            }
+          }).then(data.push(res.data[0]), alert('Elementos edit ados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setId(0))
+            .catch(error => alert('Error 403, no tiene permisosa'))
           // .then(res => {
           //     setData([...data, res.data]),
           //     console.log(data)
