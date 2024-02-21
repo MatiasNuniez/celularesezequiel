@@ -105,13 +105,15 @@ export const DDBB = () => {
             }
           })
             .then(
+              console.log(data),
+              setData([...data, res.data]),
+              console.log(data),
               alert('Elementos ingresados correctamente'),
               setNombre(''),
               setNumero(''),
               setModelo(''),
               setLocal(''))
             .catch(error => { alert('Error 403, no tiene permisosa') })
-            setData([...data, res.data]);
         } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
       } else if (op === 2) {
         const newData = {
