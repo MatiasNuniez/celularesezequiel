@@ -133,7 +133,7 @@ export const DDBB = () => {
           if (itemToUpdate) {
             itemToUpdate.date = res.data;
             // Actualizar el estado con el nuevo array modificado
-            setData(updatedItems);
+            setData(updateData);
           }
           alert('Elementos editados correctamente')
           setNombre('')
