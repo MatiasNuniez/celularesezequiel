@@ -128,8 +128,13 @@ export const DDBB = () => {
             'user': user
           }
         }).then(res => {
-          console.log(res.data._id)
-          console.log(res.data)
+          const newArray = data.map(item => {
+            if(item._id === res.data._id){
+              return res.data
+            }
+            return item
+          })
+          setData(newArray)
           alert('Elementos editados correctamente')
           setNombre('')
           setNumero('')
