@@ -120,7 +120,7 @@ export const DDBB = () => {
           modelo: modelo,
           local: local
         }
-        const res = await axios.put(`https://backlacentral.onrender.com/api/general/${id}`, newData, {
+        await axios.put(`https://backlacentral.onrender.com/api/general/${id}`, newData, {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ export const DDBB = () => {
 
   const deleteItem = async (id) => {
     try {
-      const res = await axios.delete(`https://backlacentral.onrender.com/api/general/${id}`, {
+      await axios.delete(`https://backlacentral.onrender.com/api/general/${id}`, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
