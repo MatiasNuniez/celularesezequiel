@@ -108,7 +108,7 @@ export const DDBB = () => {
 
           const resdata = await res.data
 
-          console.log(resdata);
+          console.log('asdasdasd' + resdata);
           // .then(res => {
           //     setData([...data, res.data]),
           //     console.log(data)
