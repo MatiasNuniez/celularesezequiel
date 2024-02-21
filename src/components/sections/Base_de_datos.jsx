@@ -154,7 +154,8 @@ export const DDBB = () => {
           'user': user
         }
       }).then(res => {
-        const newData = data.filter(item => item._id !== id)
+        console.log(res);
+        const newData = data.filter(item => item._id !== res.id)
         console.log(newData);
         setData(newData)
         alert('Elemento eliminado correctamente')
