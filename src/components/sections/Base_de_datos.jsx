@@ -127,7 +127,10 @@ export const DDBB = () => {
             'Authorization': `Bearer ${token}`,
             'user': user
           }
-        }).then(alert('Elementos editados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setId(0))
+        }).then(res => {
+          alert('Elementos editados correctamente'),setData(res.data), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setId(0)
+        }
+        )
       }
     } catch (error) {
       alert(error)
@@ -146,10 +149,8 @@ export const DDBB = () => {
         }
       }).then(res => {
         alert('Elemento eliminado correctamente')
-        console.log(res.data)
-        const id = res.data
-        const newData = data.filter(item => item._id !== id);
-        setData(newData);
+        const newData = data.filter(item => item._id !== id)
+        setData(newData)
       })
       .catch(error => alert(error))
     } catch (error) {
