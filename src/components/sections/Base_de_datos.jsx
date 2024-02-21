@@ -106,9 +106,8 @@ export const DDBB = () => {
               'user': user
             }})
 
-          const resdata = await res.data
+            console.log(res.data);
 
-          console.log('asdasdasd' + resdata);
           // .then(res => {
           //     setData([...data, res.data]),
           //     console.log(data)
