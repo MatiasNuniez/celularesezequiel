@@ -104,8 +104,9 @@ export const DDBB = () => {
               'user': user
             }
           })
-          .then(console.log(data), alert('Elementos ingresados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''))
-          setData([...data, res.data])
+          .then((res)=> {
+            setData([...data, res.data]), alert('Elementos ingresados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal('')
+          })
           .catch(error => { alert('Error 403, no tiene permisos') })
         } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
       } else if (op === 2) {
