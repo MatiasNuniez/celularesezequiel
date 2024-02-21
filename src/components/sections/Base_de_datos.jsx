@@ -147,7 +147,7 @@ export const DDBB = () => {
   useEffect(() => {
     getData()
     setToken(localStorage.getItem('tokensantarosa30'))
-  }, [data])
+  }, [])
 
 
   return (
