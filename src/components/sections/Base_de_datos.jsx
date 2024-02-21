@@ -128,13 +128,16 @@ export const DDBB = () => {
             'user': user
           }
         }).then(res => {
-          const updateData = [...data]
-          const itemToUpdate = updateData.find(item => item.id === res.data._id)
-          if (itemToUpdate) {
-            itemToUpdate.date = res.data;
-            // Actualizar el estado con el nuevo array modificado
-            setData(updateData);
-          }
+          const newArray = data.map(item => {
+            if (item._id === res.data._id) {
+              return { ...item, data };
+            }
+            return item; // Devolver los otros elementos sin modificar
+          });
+      
+          // Actualizar el estado con los nuevos datos
+          setData(newArray);
+          // setData(res.data)
           alert('Elementos editados correctamente')
           setNombre('')
           setNumero('')
