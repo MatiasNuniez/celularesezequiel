@@ -105,7 +105,7 @@ export const DDBB = () => {
             }
           })
             .then(
-              console.log(data),
+              console.log(res.data),
               setData([...data, res.data]),
               console.log(data),
               alert('Elementos ingresados correctamente'),
