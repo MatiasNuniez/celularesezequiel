@@ -48,10 +48,12 @@ export const DDBB = () => {
       const res = await axios.get('https://backlacentral.onrender.com/api/general',
         {
           withCredentials: true,
-          // headers: {
-          //   'Authorization': `Bearer ${token}`,
-          //   'user': user
-          // }
+          headers: {
+            'Content-Type': 'application/json',
+            'Origin': 'https://fornt-lacentral-d.vercel.app',
+            'Authorization': `Bearer ${token}`,
+            'user': user
+          }
         })
       const dataRes = await res.data
       setData(dataRes)
