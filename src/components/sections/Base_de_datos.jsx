@@ -103,15 +103,15 @@ export const DDBB = () => {
               'Authorization': `Bearer ${token}`,
               'user': user
             }
-          }).then((response)=> {
-            console.log(response.data),
-            // setData([...data, res.data]),
-            // console.log(data),
-            alert('Elementos ingresados correctamente'),
-            setNombre(''),
-            setNumero(''),
-            setModelo(''),
-            setLocal('')
+          }).then((response) => {
+              console.log(response.data),
+              setData([...data, res.data]),
+              console.log(data),
+              alert('Elementos ingresados correctamente'),
+              setNombre(''),
+              setNumero(''),
+              setModelo(''),
+              setLocal('')
           })
             .catch(error => { alert('Error 403, no tiene permisosa') })
         } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
