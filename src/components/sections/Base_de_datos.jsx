@@ -94,7 +94,8 @@ export const DDBB = () => {
             nombre: nombre,
             numero: numero,
             modelo: modelo,
-            local: local
+            local: local,
+            state:true
           }
 
           axios.post('https://backlacentral.onrender.com/api/general', newData, {
