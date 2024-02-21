@@ -96,7 +96,7 @@ export const DDBB = () => {
             modelo: modelo,
             local: local
           }
-          const res = await axios.post('https://backlacentral.onrender.com/api/general', { newData }, {
+          const res = await axios.post('https://backlacentral.onrender.com/api/general', newData , {
             withCredentials: true,
             headers: {
               'Content-Type': 'application/json',
