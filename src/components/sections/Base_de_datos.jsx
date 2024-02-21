@@ -31,7 +31,7 @@ export const DDBB = () => {
 
   const [op, setOp] = useState(0)
 
-  const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
+  const [token, setToken] = useState(localStorage.getItem('tokensantarosa30'))
 
   const [user, setUser] = useState(localStorage.getItem('user') || '')
 
@@ -50,7 +50,7 @@ export const DDBB = () => {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
-            'Origin': 'https://fornt-lacentral-d.vercel.app',
+            // 'Origin': 'https://fornt-lacentral-d.vercel.app',
             'Authorization': `Bearer ${token}`,
             'user': user
           }
@@ -146,6 +146,7 @@ export const DDBB = () => {
 
   useEffect(() => {
     getData()
+    setToken(localStorage.getItem('tokensantarosa30'))
   }, [data])
 
 
