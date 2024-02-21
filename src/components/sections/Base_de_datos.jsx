@@ -97,31 +97,37 @@ export const DDBB = () => {
             local: local
           }
 
-          // axios.post('URL_DE_TU_API/tareas', { nombre: 'Nueva Tarea' })
-          // .then(response => {
-          //   setTasks([...tasks, response.data]); // Agregar la nueva tarea a la lista de tareas en el cliente
-          // })
-          // .catch(error => {
-          //   console.error('Error al agregar la tarea:', error);
-          // });
-
-          await axios.post('https://backlacentral.onrender.com/api/general', newData, {
+          axios.post('https://backlacentral.onrender.com/api/general', newData, {
             withCredentials: true,
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`,
               'user': user
             }
-          }).then(res => {
-              setData([...data, res.data]),
-              console.log(data)
-              // alert('Elementos ingresados correctamente'),
-              // setNombre(''),
-              // setNumero(''),
-              // setModelo(''),
-              // setLocal('')
+          }).then(response => {
+            setData([...data, response.data]); // Agregar la nueva tarea a la lista de tareas en el cliente
           })
-            .catch(error => { alert('Error 403, no tiene permisosa') })
+          .catch(error => {
+            console.error('Error al agregar la tarea:', error);
+          });
+
+          // await axios.post('https://backlacentral.onrender.com/api/general', newData, {
+          //   withCredentials: true,
+          //   headers: {
+          //     'Content-Type': 'application/json',
+          //     'Authorization': `Bearer ${token}`,
+          //     'user': user
+          //   }
+          // }).then(res => {
+          //     setData([...data, res.data]),
+          //     console.log(data)
+          //     alert('Elementos ingresados correctamente'),
+          //     setNombre(''),
+          //     setNumero(''),
+          //     setModelo(''),
+          //     setLocal('')
+          // })
+          //   .catch(error => { alert('Error 403, no tiene permisosa') })
         } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
       } else if (op === 2) {
         const newData = {
