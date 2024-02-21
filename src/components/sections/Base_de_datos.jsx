@@ -107,7 +107,8 @@ export const DDBB = () => {
             }
           })
           const dataRes = await res.data
-
+          
+          console.log(dataRes);
           setData(...data, dataRes)
 
         } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
