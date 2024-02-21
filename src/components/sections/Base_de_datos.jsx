@@ -104,7 +104,8 @@ export const DDBB = () => {
               'user': user
             }
           }).then(res => {
-              setData([...data, res.data[0]])
+              console.log(res.data);
+              // setData([...data, res.data[0]])
               alert('Elementos ingresados correctamente')
               setNombre('')
               setNumero('')
@@ -128,7 +129,8 @@ export const DDBB = () => {
             'user': user
           }
         }).then(res => {
-          setData(res.data)
+          console.log(res.data);
+          // setData(res.data)
           alert('Elementos editados correctamente')
           setNombre('')
           setNumero('')
