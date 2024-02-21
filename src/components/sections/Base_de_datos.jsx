@@ -50,7 +50,6 @@ export const DDBB = () => {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
-            // 'Origin': 'https://fornt-lacentral-d.vercel.app',
             'Authorization': `Bearer ${token}`,
             'user': user
           }
@@ -91,38 +90,39 @@ export const DDBB = () => {
     try {
       if (op === 1) {
         if ((nombre !== '') && (numero !== '') && (modelo !== '') && (local !== '') && (numero.length === 10)) {
-          const data = {
+          const newData = {
             nombre: nombre,
             numero: numero,
             modelo: modelo,
             local: local
           }
-          await axios.post('https://backlacentral.onrender.com/api/general', data, {
+          const res = await axios.post('https://backlacentral.onrender.com/api/general', newData, {
             withCredentials: true,
             headers: {
+              'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`,
               'user': user
-            },
-          }).then(alert('Elementos ingresados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''))
+            }
+          }).then(setData(...data, res.data),alert('Elementos ingresados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''))
             .catch(error => {
               alert('Error 403, no tiene permisos');
             })
         } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
       } else if (op === 2) {
-        const data = {
+        const newData = {
           nombre: nombre,
           numero: numero,
           modelo: modelo,
           local: local
         }
-        await axios.put(`https://backlacentral.onrender.com/api/general/${id}`, data, {
+        const res = await axios.put(`https://backlacentral.onrender.com/api/general/${id}`, newData, {
           withCredentials: true,
           headers: {
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
             'user': user
           }
-        }
-        ).then(alert('Elementos edit ados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setId(0))
+        }).then(setData(...data,res.data),alert('Elementos edit ados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setId(0))
       }
     } catch (error) {
       alert(error)
@@ -132,13 +132,14 @@ export const DDBB = () => {
 
   const deleteItem = async (id) => {
     try {
-      await axios.delete(`https://backlacentral.onrender.com/api/general/${id}`, {
+      const res = await axios.delete(`https://backlacentral.onrender.com/api/general/${id}`, {
         withCredentials: true,
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
           'user': user
-        },
-      }).then(alert('Elemento eliminado correctamente'))
+        }
+      }).then(setData(...data,res.data),alert('Elemento eliminado correctamente'))
     } catch (error) {
       alert(error)
     }
