@@ -105,9 +105,7 @@ export const DDBB = () => {
                 'Authorization': `Bearer ${token}`,
                 'user': user
               }})
-  
-              console.log(res.data[0]);
-  
+              setData(...data, res.data[0])
           } catch (error) {
             console.error(error);
           }
