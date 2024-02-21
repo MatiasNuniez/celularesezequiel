@@ -97,17 +97,20 @@ export const DDBB = () => {
             local: local,
             state:true
           }
-
-          const res = await axios.post('https://backlacentral.onrender.com/api/general', newData, {
-            withCredentials: true,
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-              'user': user
-            }})
-
-            console.log(res);
-
+          try {
+            const res = await axios.post('https://backlacentral.onrender.com/api/general', newData, {
+              withCredentials: true,
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+                'user': user
+              }})
+  
+              console.log(res);
+  
+          } catch (error) {
+            console.error(error);
+          }
           // .then(res => {
           //     setData([...data, res.data]),
           //     console.log(data)
