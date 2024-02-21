@@ -104,7 +104,7 @@ export const DDBB = () => {
               'user': user
             }
           })
-            .then(alert('Elementos ingresados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''),setData([...data, response.data]))
+            .then(alert('Elementos ingresados correctamente'), setData([...data, res.data]),setNombre(''), setNumero(''), setModelo(''), setLocal(''))
             .catch(error => {
               alert('Error 403, no tiene permisos');
             })
@@ -123,7 +123,7 @@ export const DDBB = () => {
             'Authorization': `Bearer ${token}`,
             'user': user
           }
-        }).then(setData(...data, res.data), alert('Elementos edit ados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setId(0))
+        }).then(alert('Elementos edit ados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setId(0))
       }
     } catch (error) {
       alert(error)
@@ -140,7 +140,7 @@ export const DDBB = () => {
           'Authorization': `Bearer ${token}`,
           'user': user
         }
-      }).then(setData(...data, res.data), alert('Elemento eliminado correctamente'))
+      }).then(alert('Elemento eliminado correctamente'))
     } catch (error) {
       alert(error)
     }
