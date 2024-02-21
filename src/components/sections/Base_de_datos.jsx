@@ -103,7 +103,7 @@ export const DDBB = () => {
               'Authorization': `Bearer ${token}`,
               'user': user
             }
-          }).then(alert('Elementos ingresados correctamente'), setData([...data, res.data]), setNombre(''), setNumero(''), setModelo(''), setLocal('')).catch(error => { alert('Error 403, no tiene permisos'); })
+          }).then(alert('Elementos ingresados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal('')).catch(error => { alert('Error 403, no tiene permisos'); })
           setData([...data, res.data])
         } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
       } else if (op === 2) {
