@@ -52,7 +52,9 @@ export const Rotos = () => {
       const dataRes = await res.data
       setData(dataRes)
     } catch (error) {
-      console.log(error);
+      console.error(error)
+      localStorage.removeItem('tokensantarosa30')
+      navigate('/login')
     }
   }
 

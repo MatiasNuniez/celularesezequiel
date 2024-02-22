@@ -49,14 +49,16 @@ export const Prestados = () => {
     try {
       const res = await axios.get('https://backlacentral.onrender.com/api/prestados', {
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
-          'user':user
         }
       })
       const dataRes = await res.data
       setData(dataRes)
     } catch (error) {
-      console.log(error);
+      console.error(error)
+      localStorage.removeItem('tokensantarosa30')
+      navigate('/login')
     }
   }
 
@@ -100,11 +102,20 @@ export const Prestados = () => {
         await axios.post('https://backlacentral.onrender.com/api/prestados',
           data, {
           headers: {
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
-            'user':user
           }
         })
-          .then(alert('Elementos ingresados correctamente'), setNombre(''), setNumero(''), setModelo(''), setRazon(''), setLocal(''))
+          .then(res => {
+            setData([...data, res.data[0]])
+            alert('Elementos ingresados correctamente')
+            setNombre('')
+            setNumero('')
+            setModelo('')
+            setRazon('')
+            setLocal('')
+          })
+
           .catch(error => alert(`No se pudo ingresar el elemento por el siguiente error ${error}`))
       } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
     } else if (op === 2) {
@@ -118,8 +129,8 @@ export const Prestados = () => {
       await axios.put(`https://backlacentral.onrender.com/api/prestados/${id}`, data,
         {
           headers: {
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
-            'user':user
           }
         })
         .then(alert('Elementos editados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setRazon(''), setId(0))
@@ -131,8 +142,8 @@ export const Prestados = () => {
     try {
       await axios.delete(`https://backlacentral.onrender.com/api/prestados/${id}`, {
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
-          'user':user
         }
       })
         .then(alert('Elemento eliminado correctamente'))

@@ -51,13 +51,12 @@ export const DDBB = () => {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
-            'user': user
           }
         })
       const dataRes = await res.data
       setData(dataRes)
     } catch (error) {
-      console.error(console.error())
+      console.error(error)
       localStorage.removeItem('tokensantarosa30')
       navigate('/login')
     }
@@ -103,7 +102,6 @@ export const DDBB = () => {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`,
-              'user': user
             }
           }).then(res => {
             setData([...data, res.data[0]])
@@ -113,7 +111,10 @@ export const DDBB = () => {
             setModelo('')
             setLocal('')
           })
-            .catch(error => { alert('Error 403, no tiene permisosa') })
+            .catch(error => {alert('Error 403, no tiene permisos') },
+              console.error(error),
+              localStorage.removeItem('tokensantarosa30'),
+              navigate('/login'))
         } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
       } else if (op === 2) {
         const newData = {
@@ -127,7 +128,6 @@ export const DDBB = () => {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
-            'user': user
           }
         }).then(res => {
           const newArray = data.map(item => {
@@ -143,8 +143,11 @@ export const DDBB = () => {
           setModelo('')
           setLocal('')
           setId(0)
-        }
-        )
+        })
+          .catch(error => { alert('Error 403, no tiene permisos') },
+            console.error(),
+            localStorage.removeItem('tokensantarosa30'),
+            navigate('/login'))
       }
     } catch (error) {
       alert(error)
@@ -158,8 +161,7 @@ export const DDBB = () => {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'user': user
+          'Authorization': `Bearer ${token}`
         }
       }).then(res => {
         const newData = data.filter(item => item._id !== res.data)
