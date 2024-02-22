@@ -57,7 +57,8 @@ export const DDBB = () => {
       const dataRes = await res.data
       setData(dataRes)
     } catch (error) {
-      console.error('Error con la peticion de datos', error)
+      console.error(res.data.mensaje)
+      navigate('/login')
     }
   }
 
