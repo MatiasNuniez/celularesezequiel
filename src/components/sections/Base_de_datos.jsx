@@ -58,6 +58,7 @@ export const DDBB = () => {
       setData(dataRes)
     } catch (error) {
       console.error(console.error())
+      localStorage.removeItem('tokensantarosa30')
       navigate('/login')
     }
   }
