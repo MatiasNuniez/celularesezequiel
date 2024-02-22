@@ -104,12 +104,12 @@ export const DDBB = () => {
               'user': user
             }
           }).then(res => {
-              setData([...data, res.data[0]])
-              alert('Elementos ingresados correctamente')
-              setNombre('')
-              setNumero('')
-              setModelo('')
-              setLocal('')
+            setData([...data, res.data[0]])
+            alert('Elementos ingresados correctamente')
+            setNombre('')
+            setNumero('')
+            setModelo('')
+            setLocal('')
           })
             .catch(error => { alert('Error 403, no tiene permisosa') })
         } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
@@ -129,7 +129,7 @@ export const DDBB = () => {
           }
         }).then(res => {
           const newArray = data.map(item => {
-            if(item._id === res.data._id){
+            if (item._id === res.data._id) {
               return res.data
             }
             return item
@@ -161,11 +161,10 @@ export const DDBB = () => {
         }
       }).then(res => {
         const newData = data.filter(item => item._id !== res.data)
-        console.log(newData);
         setData(newData)
         alert('Elemento eliminado correctamente')
       })
-      .catch(error => alert(error))
+        .catch(error => alert(error))
     } catch (error) {
       alert(error)
     }
