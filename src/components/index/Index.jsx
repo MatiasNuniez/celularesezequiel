@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import imgPrestados from '../../assets/img-celulares-prestados.jpg'
 import imgGeneral from '../../assets/img-datos-general.jpg'
 import imgRotos from '../../assets/rotos.jpg'
+import { useNavigate } from 'react-router-dom'
 
 export const OptionsIndex = () => {
 
@@ -10,6 +11,8 @@ export const OptionsIndex = () => {
   useEffect(() => {
     setToken(localStorage.getItem('tokensantarosa30') || '')
   }, [])
+
+  const navigate = new useNavigate()
 
   return (
     <div>
@@ -45,9 +48,8 @@ export const OptionsIndex = () => {
 
           </div>
         </div>
-        : (windows.location.replace('https://fornt-lacentral-d.vercel.app/login'), alert("inicie sesion"))
+        : (navigate('/login'), alert('inicie sesion, dirijase a https://celularesezequiel.vercel.app/login'))
       }
     </div>
-
   )
 }
