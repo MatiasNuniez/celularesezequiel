@@ -189,7 +189,7 @@ export const Prestados = () => {
     <div>
       {token !== '' ?
         <div className="container">
-          <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal fade" id="#exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
@@ -218,25 +218,26 @@ export const Prestados = () => {
             </div>
           </div>
 
-          <div class="modal" id="eliminarModal" tabindex={-1} role="dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+          <div className="modal" id="eliminarModal" tabindex={-1} role="dialog">
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">Eliminar</h5>
+                  <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
-                  <p>Desea eliminiar?</p>
+                <div className="modal-body">
+                  <p>Desea eliminar?</p>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" onClick={() => deleteItem()}>Eliminar</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={() => setIdDelete('')}>Cerrar</button>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-primary" onClick={() => deleteItem()}>Eliminar</button>
+                  <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={() => setIdDelete('')}>Cerrar</button>
                 </div>
               </div>
             </div>
           </div>
-
 
           <div className="top">
             <div className='Check mb-3 mt-3'>
