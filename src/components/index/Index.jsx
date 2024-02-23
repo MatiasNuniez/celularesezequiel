@@ -47,7 +47,7 @@ export const OptionsIndex = () => {
 
           </div>
         </div>
-        : (navigate('/login'), alert('Inicie sesion'))
+        : (navigate('/login'))
       }
     </div>
 
