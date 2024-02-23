@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import imgPrestados from '../../assets/img-celulares-prestados.jpg'
 import imgGeneral from '../../assets/img-datos-general.jpg'
 import imgRotos from '../../assets/rotos.jpg'
-import { useNavigate, useHistory } from 'react-router-dom'
 
 export const OptionsIndex = () => {
 
@@ -49,7 +48,7 @@ export const OptionsIndex = () => {
 
           </div>
         </div>
-        : (history.push("/login"), alert("inicie sesion, dirijase a https://celularesezequiel.vercel.app/login"))
+        : (location.href('https://fornt-lacentral-d.vercel.app/login'), alert("inicie sesion"))
       }
     </div>
 
