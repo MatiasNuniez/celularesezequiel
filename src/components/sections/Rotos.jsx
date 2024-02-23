@@ -250,7 +250,7 @@ export const Rotos = () => {
                       <td>{dat.modelo}</td>
                       <td>{dat.componentes}</td>
                       <td><button type="button" className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => openModal(2, dat._id, dat.modelo, dat.componentes, dat.local)}>?</button></td>
-                      <td><button className='btn btn-danger' onClick={() => deleteItem(dat._id)}>-</button></td>
+                      <td><button className='btn btn-danger' data-bs-toggle="modal" data-bs-target="#eliminarModal" onClick={() => setIdDelete(dat._id)}>-</button></td>
                     </tr>)
                 })}
 
