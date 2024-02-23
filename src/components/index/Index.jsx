@@ -45,7 +45,7 @@ export const OptionsIndex = () => {
 
           </div>
         </div>
-        : (window.location.href('https://fornt-lacentral-d.vercel.app/login'), alert("inicie sesion"))
+        : (windows.location.replace('https://fornt-lacentral-d.vercel.app/login'), alert("inicie sesion"))
       }
     </div>
 
