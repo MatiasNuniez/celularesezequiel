@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import imgPrestados from '../../assets/img-celulares-prestados.jpg'
 import imgGeneral from '../../assets/img-datos-general.jpg'
 import imgRotos from '../../assets/rotos.jpg'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useHistory } from 'react-router-dom'
 
 export const OptionsIndex = () => {
 
   const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
 
-  const navigate = new useNavigate()
+  const navigate = new useNavigate();
+  const history = new useHistory();
 
   useEffect(() => {
     setToken(localStorage.getItem('tokensantarosa30') || '')
@@ -48,7 +49,7 @@ export const OptionsIndex = () => {
 
           </div>
         </div>
-        : (navigate("/login"), alert("inicie sesion, dirijase a https://celularesezequiel.vercel.app/login"))
+        : (history.push("/login"), alert("inicie sesion, dirijase a https://celularesezequiel.vercel.app/login"))
       }
     </div>
 
