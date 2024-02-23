@@ -182,7 +182,7 @@ export const DDBB = () => {
   return (
 
     <div>
-      {token !== '' ?
+      {token !== null || token !== ''?
         <div className="container">
           <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
@@ -273,7 +273,7 @@ export const DDBB = () => {
             </table>
           </div>
         </div>
-        : (alert('Inicie sesion'), navigate('/login'))
+        : (navigate('/login'),alert('Inicie sesion'))
       }
     </div>
   )

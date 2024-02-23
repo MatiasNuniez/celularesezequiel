@@ -16,7 +16,7 @@ export const OptionsIndex = () => {
   return (
 
     <div className='container'>
-      { token !== null ? 
+      { token !== null || token !== '' ? 
       <div className='contentIndex'>
       <a className='aCardIndex' href="/Base_de_datos">
       <div className="card" style={{width:'18rem'}}>
@@ -46,7 +46,7 @@ export const OptionsIndex = () => {
       </a>
 
       </div> 
-      : (alert('Inicie sesion'),navigate('/login'))
+      : (navigate('/login'), alert('Inicie sesion'))
 
 }
 
