@@ -36,7 +36,7 @@ export const Prestados = () => {
   const [data, setData] = useState([])
 
   const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
-  
+
   const [idDelete, setIdDelete] = useState('')
 
   const navigate = new useNavigate()

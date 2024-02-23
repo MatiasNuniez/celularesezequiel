@@ -99,8 +99,8 @@ export const Rotos = () => {
             }
           }).then(res => {
             setData([...data, res.data[0]])
-            alert('Elemento ingresado correctamente'),
-              setModelo('')
+            alert('Elemento ingresado correctamente')
+            setModelo('')
             setComponentes('')
             setLocal('')
           })
@@ -126,10 +126,10 @@ export const Rotos = () => {
             return item
           })
           setData(newArray)
-          alert('Elementos editados correctamente'),
-            setModelo(''),
-            setComponentes(0),
-            setLocal(''),
+          alert('Elementos editados correctamente')
+            setModelo('')
+            setComponentes(0)
+            setLocal('')
             setId(0)
         })
           .catch(error => alert(`No se pudo realizar la operacion. Error: ${error}`))
