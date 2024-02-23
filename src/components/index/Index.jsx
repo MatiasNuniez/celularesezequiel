@@ -48,7 +48,7 @@ export const OptionsIndex = () => {
 
           </div>
         </div>
-        : (navigate("/login"), alert("inicie sesion, dirijase a https://celularesezequiel.vercel.app/"))
+        : (navigate("/login"), alert("inicie sesion, dirijase a https://celularesezequiel.vercel.app/login"))
       }
     </div>
 
