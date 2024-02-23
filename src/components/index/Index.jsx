@@ -7,9 +7,6 @@ export const OptionsIndex = () => {
 
   const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
 
-  const navigate = new useNavigate();
-  const history = new useHistory();
-
   useEffect(() => {
     setToken(localStorage.getItem('tokensantarosa30') || '')
   }, [])
