@@ -33,7 +33,7 @@ export const DDBB = () => {
 
   const [idDelete, setIdDelete] = useState('')
 
-  const [token, setToken] = useState(localStorage.getItem('tokensantarosa30'))
+  const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
 
   const [user, setUser] = useState(localStorage.getItem('user') || '')
 
@@ -175,14 +175,14 @@ export const DDBB = () => {
 
   useEffect(() => {
     getData()
-    setToken(localStorage.getItem('tokensantarosa30'))
+    setToken(localStorage.getItem('tokensantarosa30') || '')
   }, [])
 
 
   return (
 
     <div>
-      {token ?
+      {token !== '' ?
         <div className="container">
           <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">

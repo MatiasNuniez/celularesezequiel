@@ -164,13 +164,14 @@ export const Rotos = () => {
 
   useEffect(() => {
     getData()
+    setToken(localStorage.getItem('tokensantarosa30') || '')
   }, [])
 
 
   return (
 
     <div>
-      {token ?
+      {token !== '' ?
         <div className="container">
           <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
