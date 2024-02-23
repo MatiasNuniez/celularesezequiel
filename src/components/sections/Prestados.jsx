@@ -36,8 +36,8 @@ export const Prestados = () => {
   const [data, setData] = useState([])
 
   const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
-
-  const [user, setUser] = useState(localStorage.getItem('user') || '')
+  
+  const [idDelete, setIdDelete] = useState('')
 
   const navigate = new useNavigate()
 
@@ -90,23 +90,24 @@ export const Prestados = () => {
   }
 
   const postAndEdit = async (id, nombre, numero, modelo, razon, local) => {
-    if (op === 1) {
-      if ((nombre !== '') && (numero !== '') && (modelo !== '') && (razon !== '') && (local !== '') && (numero.length === 10)) {
-        const data = {
-          nombre: nombre,
-          numero: numero,
-          modelo: modelo,
-          razon: razon,
-          local: local
-        }
-        await axios.post('https://backlacentral.onrender.com/api/prestados',
-          data, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+    try {
+      if (op === 1) {
+        if ((nombre !== '') && (numero !== '') && (modelo !== '') && (razon !== '') && (local !== '') && (numero.length === 10)) {
+          const newData = {
+            nombre: nombre,
+            numero: numero,
+            modelo: modelo,
+            razon: razon,
+            local: local
           }
-        })
-          .then(res => {
+          await axios.post('https://backlacentral.onrender.com/api/prestados',
+            newData, {
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            }
+          }).then(res => {
             setData([...data, res.data[0]])
             alert('Elementos ingresados correctamente')
             setNombre('')
@@ -115,48 +116,72 @@ export const Prestados = () => {
             setRazon('')
             setLocal('')
           })
-
+            .catch(error => alert(`No se pudo ingresar el elemento por el siguiente error ${error}`))
+        } else {
+          alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)')
+        }
+      } else if (op === 2) {
+        const newData = {
+          nombre: nombre,
+          numero: numero,
+          modelo: modelo,
+          razon: razon,
+          local: local
+        }
+        await axios.put(`https://backlacentral.onrender.com/api/prestados/${id}`, newData,
+          {
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            }
+          }).then(res => {
+            const newArray = data.map(item => {
+              if (item._id === res.data._id) {
+                return res.data
+              }
+              return item
+            })
+            setData(newArray)
+            alert('Elementos editados correctamente')
+            setNombre('')
+            setNumero('')
+            setModelo('')
+            setLocal('')
+            setRazon('')
+            setId(0)
+          })
           .catch(error => alert(`No se pudo ingresar el elemento por el siguiente error ${error}`))
-      } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
-    } else if (op === 2) {
-      const data = {
-        nombre: nombre,
-        numero: numero,
-        modelo: modelo,
-        razon: razon,
-        local: local
       }
-      await axios.put(`https://backlacentral.onrender.com/api/prestados/${id}`, data,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          }
-        })
-        .then(alert('Elementos editados correctamente'), setNombre(''), setNumero(''), setModelo(''), setLocal(''), setRazon(''), setId(0))
-        .catch(error => alert('No se pudo eliminar el elemento'))
+    } catch (error) {
+      alert(`No se pudo realizar la operacion. Error: ${error}`)
     }
   }
 
-  const deleteItem = async (id) => {
+  const deleteItem = async () => {
     try {
-      await axios.delete(`https://backlacentral.onrender.com/api/prestados/${id}`, {
+      await axios.delete(`https://backlacentral.onrender.com/api/prestados/${idDelete}`, {
+        withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         }
+      }).then(res => {
+        const newData = data.filter(item => item._id !== res.data)
+        setData(newData)
+        alert('Elemento eliminado correctamente')
+        setIdDelete('')
       })
-        .then(alert('Elemento eliminado correctamente'))
-        .catch(error => alert('No se pudo eliminar el elemento'))
+        .catch(error => alert(`No se pudo eliminar el elemento. Error: ${error}`))
     } catch (error) {
-      alert(error)
+      alert(`No se pudo eliminar el elemento. Error: ${error}`)
     }
   }
 
 
   useEffect(() => {
     getData()
-  }, [data])
+  }, [])
 
 
   return (
@@ -192,6 +217,26 @@ export const Prestados = () => {
               </div>
             </div>
           </div>
+
+          <div class="modal" id="eliminarModal" tabindex={-1} role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Desea eliminiar?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" onClick={() => deleteItem()}>Eliminar</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={() => setIdDelete('')}>Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
           <div className="top">
             <div className='Check mb-3 mt-3'>
@@ -231,7 +276,7 @@ export const Prestados = () => {
                       <td>{dat.razon}</td>
                       <td>{dat.fecha}</td>
                       <td><button type="button" className='btn btn-warning' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => openModal(2, dat._id, dat.nombre, dat.numero, dat.modelo, dat.razon, dat.local)}>?</button></td>
-                      <td><button className='btn btn-danger' onClick={() => deleteItem(dat._id)}>-</button></td>
+                      <td><button className='btn btn-danger' data-bs-toggle="modal" data-bs-target="#eliminarModal" onClick={() => setIdDelete(dat._id)}>-</button></td>
                     </tr>)
                 })}
 

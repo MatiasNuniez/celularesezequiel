@@ -44,9 +44,10 @@ export const Rotos = () => {
   const getData = async () => {
     try {
       const res = await axios.get('https://backlacentral.onrender.com/api/rotos', {
+        withCredentials: true,
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
-          'user':user
         }
       })
       const dataRes = await res.data
@@ -85,33 +86,56 @@ export const Rotos = () => {
     try {
       if (op === 1) {
         if ((modelo !== '') && (componentes !== '') && (local !== '')) {
-          const data = {
+          const newData = {
             modelo: modelo,
             componentes: componentes,
             local: local
           }
-          await axios.post('https://backlacentral.onrender.com/api/rotos', data, {
+          await axios.post('https://backlacentral.onrender.com/api/rotos', newData, {
+            withCredentials: true,
             headers: {
+              'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`,
-              'user':user
             }
-          }).then(alert('Elemento ingresado correctamente'), setModelo(''), setComponentes(''), setLocal(''))
+          }).then(res => {
+            setData([...data, res.data[0]])
+            alert('Elemento ingresado correctamente'),
+              setModelo('')
+            setComponentes('')
+            setLocal('')
+          })
+            .catch(error => alert(`No se pudo realizar la operacion. Error: ${error}`))
         } else { alert('Complete todos los campos') }
       } else if (op === 2) {
-        const data = {
+        const newData = {
           modelo: modelo,
           componentes: componentes,
           local: local
         }
-        await axios.put(`https://backlacentral.onrender.com/api/rotos/${id}`, data, {
+        await axios.put(`https://backlacentral.onrender.com/api/rotos/${id}`, newData, {
+          withCredentials: true,
           headers: {
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
-            'user':user
           }
-        }).then(alert('Elementos editados correctamente'), setModelo(''), setComponentes(0), setLocal(''), setId(0))
+        }).then(res => {
+          const newArray = data.map(item => {
+            if (item._id === res.data._id) {
+              return res.data
+            }
+            return item
+          })
+          setData(newArray)
+          alert('Elementos editados correctamente'),
+            setModelo(''),
+            setComponentes(0),
+            setLocal(''),
+            setId(0)
+        })
+          .catch(error => alert(`No se pudo realizar la operacion. Error: ${error}`))
       }
     } catch (error) {
-      alert(error)
+      alert(`No se pudo realizar la operacion. Error: ${error}`)
     }
 
   }
@@ -119,19 +143,25 @@ export const Rotos = () => {
   const deleteItem = async (id) => {
     try {
       await axios.delete(`https://backlacentral.onrender.com/api/rotos/${id}`, {
+        withCredentials: true,
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
-          'user':user
         }
-      }).then(alert('Elemento eliminado correctamente'))
+      }).then(res => {
+        const newData = data.filter(item => item._id !== res.data)
+        setData(newData)
+        alert('Elemento eliminado correctamente')
+      })
+        .catch(error => alert(`No se pudo eliminar el elemento. Error: ${error}`))
     } catch (error) {
-      alert(error)
+      alert(`No se pudo eliminar el elemento. Error: ${error}`)
     }
   }
 
   useEffect(() => {
     getData()
-  }, [data])
+  }, [])
 
 
   return (

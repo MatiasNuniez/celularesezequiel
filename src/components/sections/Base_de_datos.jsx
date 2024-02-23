@@ -111,11 +111,10 @@ export const DDBB = () => {
             setModelo('')
             setLocal('')
           })
-            .catch(error => {alert('Error 403, no tiene permisos') },
-              console.error(error),
-              localStorage.removeItem('tokensantarosa30'),
-              navigate('/login'))
-        } else { alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)') }
+            .catch(error => alert(`No se pudo ingresar el elemento por el siguiente error ${error}`))
+        } else {
+          alert('Complete todos los campos (Recuerde que numero lleva 10 numeros)')
+        }
       } else if (op === 2) {
         const newData = {
           nombre: nombre,
@@ -144,13 +143,10 @@ export const DDBB = () => {
           setLocal('')
           setId(0)
         })
-          .catch(error => { alert('Error 403, no tiene permisos') },
-            console.error(),
-            localStorage.removeItem('tokensantarosa30'),
-            navigate('/login'))
+          .catch(error => alert(`No se pudo ingresar el elemento por el siguiente error ${error}`))
       }
     } catch (error) {
-      alert(error)
+      alert(`No se pudo realizar la operacion. Error: ${error}`)
     }
 
   }
@@ -168,9 +164,9 @@ export const DDBB = () => {
         setData(newData)
         alert('Elemento eliminado correctamente')
       })
-        .catch(error => alert(error))
+        .catch(error => alert(`No se pudo eliminar el elemento. Error: ${error}`))
     } catch (error) {
-      alert(error)
+      alert(`No se pudo eliminar el elemento. Error: ${error}`)
     }
   }
 
