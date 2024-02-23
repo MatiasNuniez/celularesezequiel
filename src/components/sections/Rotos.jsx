@@ -142,7 +142,7 @@ export const Rotos = () => {
 
   }
 
-  const deleteItem = async (id) => {
+  const deleteItem = async () => {
     try {
       await axios.delete(`https://backlacentral.onrender.com/api/rotos/${idDelete}`, {
         withCredentials: true,
