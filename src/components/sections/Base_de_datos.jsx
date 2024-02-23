@@ -31,6 +31,8 @@ export const DDBB = () => {
 
   const [op, setOp] = useState(0)
 
+  const [idDelete, setIdDelete] = useState('')
+
   const [token, setToken] = useState(localStorage.getItem('tokensantarosa30'))
 
   const [user, setUser] = useState(localStorage.getItem('user') || '')
@@ -153,7 +155,7 @@ export const DDBB = () => {
 
   const deleteItem = async (id) => {
     try {
-      await axios.delete(`https://backlacentral.onrender.com/api/general/${id}`, {
+      await axios.delete(`https://backlacentral.onrender.com/api/general/${idDelete}`, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
@@ -163,6 +165,7 @@ export const DDBB = () => {
         const newData = data.filter(item => item._id !== res.data)
         setData(newData)
         alert('Elemento eliminado correctamente')
+        setIdDelete('')
       })
         .catch(error => alert(`No se pudo eliminar el elemento. Error: ${error}`))
     } catch (error) {
@@ -204,6 +207,26 @@ export const DDBB = () => {
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                   <button type="button" className="btn btn-primary" onClick={() => postAndEdit(id, nombre, numero, modelo, local)} >{buttonAddOrEdit}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="modal" id="eliminarModal" tabindex={-1} role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Desea eliminiar?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" onClick={() => deleteItem()}>Eliminar</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={() => setIdDelete('')}>Cerrar</button>
                 </div>
               </div>
             </div>

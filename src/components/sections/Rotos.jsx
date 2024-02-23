@@ -35,6 +35,8 @@ export const Rotos = () => {
 
   const [data, setData] = useState([])
 
+  const [idDelete, setIdDelete] = useState('')
+
   const realData = data.filter((p) => (`${p.local}` === check))
 
   const filteredProducts = filterProducts(realData, buscado);
@@ -127,10 +129,10 @@ export const Rotos = () => {
           })
           setData(newArray)
           alert('Elementos editados correctamente')
-            setModelo('')
-            setComponentes(0)
-            setLocal('')
-            setId(0)
+          setModelo('')
+          setComponentes(0)
+          setLocal('')
+          setId(0)
         })
           .catch(error => alert(`No se pudo realizar la operacion. Error: ${error}`))
       }
@@ -142,7 +144,7 @@ export const Rotos = () => {
 
   const deleteItem = async (id) => {
     try {
-      await axios.delete(`https://backlacentral.onrender.com/api/rotos/${id}`, {
+      await axios.delete(`https://backlacentral.onrender.com/api/rotos/${idDelete}`, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
@@ -152,6 +154,7 @@ export const Rotos = () => {
         const newData = data.filter(item => item._id !== res.data)
         setData(newData)
         alert('Elemento eliminado correctamente')
+        setIdDelete('')
       })
         .catch(error => alert(`No se pudo eliminar el elemento. Error: ${error}`))
     } catch (error) {
@@ -191,6 +194,25 @@ export const Rotos = () => {
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                   <button type="button" className="btn btn-primary" onClick={() => postAndEdit(id, modelo, componentes, local)} >{buttonAddOrEdit}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal" id="eliminarModal" tabindex={-1} role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Desea eliminiar?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" onClick={() => deleteItem()}>Eliminar</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={() => setIdDelete('')}>Cerrar</button>
                 </div>
               </div>
             </div>
