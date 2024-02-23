@@ -233,7 +233,7 @@ export const Prestados = () => {
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-primary" onClick={() => deleteItem()}>Eliminar</button>
-                  <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={() => setIdDelete('')}>Cerrar</button>
+                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
               </div>
             </div>
