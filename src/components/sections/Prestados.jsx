@@ -186,7 +186,6 @@ export const Prestados = () => {
 
 
   return (
-
     <div>
       {token != '' ?
         <div className="container">
@@ -287,5 +286,5 @@ export const Prestados = () => {
         : (navigate('/login'),alert('Inicie sesion'))
       }
     </div>
-  )
+      )
 }

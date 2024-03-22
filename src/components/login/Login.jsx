@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import imagen from '../../assets/descarga.jpg'
+import imagen from '../../assets/logo_login.png'
 import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
@@ -15,7 +15,7 @@ export const Login = () => {
             try {
                 const res = await axios({
                     method: 'post',
-                    withCredentials:true,
+                    withCredentials: true,
                     url: 'https://backlacentral.onrender.com/api/login',
                     data: {
                         user: user,
@@ -46,20 +46,29 @@ export const Login = () => {
         <div className='container'>
             {token !== null ?
                 navigate('/')
-                : <div className='Login'>
-                    <img src={imagen} id='img-login' alt='img-login' />
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <label className="form-label">Usuario</label>
-                            <input type="text" className="form-control" id="user" aria-describedby="emailHelp" onChange={e => setUser(e.target.value)} value={user} />
+                :
+                <div className="row justify-content-center">
+                    <div className="col-md-6 col-lg-4">
+                        <div className="card mt-5">
+                            <img src={imagen} className="card-img-top" alt="Imagen de fondo"/>
+                                <div className="card-body p-4">
+                                    <h5 className="card-title text-center">Inicio de Sesión</h5>
+                                    <form onSubmit={handleSubmit} >
+                                        <div className="form-group pb-4">
+                                            <label for="email">Usuario:</label>
+                                            <input type="email" className="form-control" id="user" placeholder="Ingrese su correo electrónico" onChange={e => setUser(e.target.value)} value={user}/>
+                                        </div>
+                                        <div className="form-group pb-4">
+                                            <label for="password">Contraseña:</label>
+                                            <input type="password" className="form-control" placeholder="Ingrese su contraseña" id="password" onChange={e => setPassword(e.target.value)} value={password}/>
+                                        </div>
+                                        <button type="submit" className="btn btn-primary btn-block custom-button">Iniciar Sesión</button>
+                                    </form>
+                                </div>
                         </div>
-                        <div className="mb-3">
-                            <label className="form-label">Contraseña</label>
-                            <input type="password" className="form-control" id="password" onChange={e => setPassword(e.target.value)} value={password} />
-                        </div>
-                        <button type="submit" className="btn btn-primary">Ingresar</button>
-                    </form>
+                    </div>
                 </div>
+
             }
         </div>
     )

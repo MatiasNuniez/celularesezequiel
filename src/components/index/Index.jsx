@@ -3,6 +3,7 @@ import imgPrestados from '../../assets/img-celulares-prestados.jpg'
 import imgGeneral from '../../assets/img-datos-general.jpg'
 import imgRotos from '../../assets/rotos.jpg'
 import { useNavigate } from 'react-router-dom'
+import { navbar } from '../navbar/navbar'
 
 export const OptionsIndex = () => {
 

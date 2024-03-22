@@ -9,9 +9,16 @@
   justify-content: space-between;
 }
 
-#img-login{
-  border-radius: 20px;
+.btn-primary {
+      background-color: #F45C0B; /* Color de fondo del botón personalizado */
+      border-color: #F45C0B; /* Color del borde del botón personalizado */
+      color: #ffffff;
 }
+
+.custom-button:hover {
+      background-color: #f8b48f; /* Color de fondo del botón personalizado cuando se pasa el cursor */
+      border-color: #f8b48f; /* Color del borde del botón personalizado cuando se pasa el cursor */
+    } 
 
 .contentIndex{
   display: flex;
@@ -41,3 +48,4 @@ nav{
 .form-modal input{
   margin-bottom: 10px;
 }
+
