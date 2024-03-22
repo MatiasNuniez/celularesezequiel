@@ -56,7 +56,7 @@ export const Login = () => {
                                     <form onSubmit={handleSubmit} >
                                         <div className="form-group pb-4">
                                             <label for="email">Usuario:</label>
-                                            <input type="email" className="form-control" id="user" placeholder="Ingrese su correo electrónico" onChange={e => setUser(e.target.value)} value={user}/>
+                                            <input type="text" className="form-control" id="user" placeholder="Ingrese su correo electrónico" onChange={e => setUser(e.target.value)} value={user}/>
                                         </div>
                                         <div className="form-group pb-4">
                                             <label for="password">Contraseña:</label>
