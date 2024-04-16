@@ -51,7 +51,7 @@ export const OptionsIndex = () => {
 
           </div>
         </div>
-        : (navigate('/login'), alert('inicie sesion, dirijase a https://celularesezequiel.vercel.app/login'))
+        : (navigate('/login'), alert(`inicie sesion, dirijase a ${process.env.REACT_APP_LOGIN}`))
       }
     </div>
   )
