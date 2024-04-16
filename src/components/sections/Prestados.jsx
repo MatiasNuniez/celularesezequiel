@@ -35,7 +35,7 @@ export const Prestados = () => {
 
   const [data, setData] = useState([])
 
-  const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
+  const [token, setToken] = useState(localStorage.getItem(process.env.REACT_APP_TOKENID) || '')
 
   const [idDelete, setIdDelete] = useState('')
 
@@ -47,7 +47,7 @@ export const Prestados = () => {
 
   const getData = async () => {
     try {
-      const res = await axios.get('https://backlacentral.onrender.com/api/prestados', {
+      const res = await axios.get(`${process.env.REACT_APP_URL_API}prestados`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
@@ -57,7 +57,7 @@ export const Prestados = () => {
       setData(dataRes)
     } catch (error) {
       console.error(error)
-      localStorage.removeItem('tokensantarosa30')
+      localStorage.removeItem(process.env.REACT_APP_TOKENID)
       navigate('/login')
     }
   }
@@ -100,7 +100,7 @@ export const Prestados = () => {
             razon: razon,
             local: local
           }
-          await axios.post('https://backlacentral.onrender.com/api/prestados',
+          await axios.post(`${process.env.REACT_APP_URL_API}prestados`,
             newData, {
             withCredentials: true,
             headers: {
@@ -128,7 +128,7 @@ export const Prestados = () => {
           razon: razon,
           local: local
         }
-        await axios.put(`https://backlacentral.onrender.com/api/prestados/${id}`, newData,
+        await axios.put(`${process.env.REACT_APP_URL_API}prestados/${id}`, newData,
           {
             withCredentials: true,
             headers: {
@@ -160,7 +160,7 @@ export const Prestados = () => {
 
   const deleteItem = async () => {
     try {
-      await axios.delete(`https://backlacentral.onrender.com/api/prestados/${idDelete}`, {
+      await axios.delete(`${process.env.REACT_APP_URL_API}prestados/${idDelete}`, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
@@ -181,13 +181,13 @@ export const Prestados = () => {
 
   useEffect(() => {
     getData()
-    setToken(localStorage.getItem('tokensantarosa30') || '')
+    setToken(localStorage.getItem(process.env.REACT_APP_TOKENID) || '')
   }, [])
 
 
   return (
     <div>
-      {token != '' ?
+      {token !== '' ?
         <div className="container">
           <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">

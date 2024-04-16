@@ -29,7 +29,7 @@ export const Rotos = () => {
 
   const [op, setOp] = useState(0)
 
-  const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
+  const [token, setToken] = useState(localStorage.getItem(process.env.REACT_APP_TOKENID) || '')
 
   const [user, setUser] = useState(localStorage.getItem('user') || '')
 
@@ -45,7 +45,7 @@ export const Rotos = () => {
 
   const getData = async () => {
     try {
-      const res = await axios.get('https://backlacentral.onrender.com/api/rotos', {
+      const res = await axios.get(`${process.env.REACT_APP_URL_API}rotos`, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export const Rotos = () => {
       setData(dataRes)
     } catch (error) {
       console.error(error)
-      localStorage.removeItem('tokensantarosa30')
+      localStorage.removeItem(process.env.REACT_APP_TOKENID)
       navigate('/login')
     }
   }
@@ -93,7 +93,7 @@ export const Rotos = () => {
             componentes: componentes,
             local: local
           }
-          await axios.post('https://backlacentral.onrender.com/api/rotos', newData, {
+          await axios.post(`${process.env.REACT_APP_URL_API}rotos`, newData, {
             withCredentials: true,
             headers: {
               'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ export const Rotos = () => {
           componentes: componentes,
           local: local
         }
-        await axios.put(`https://backlacentral.onrender.com/api/rotos/${id}`, newData, {
+        await axios.put(`${process.env.REACT_APP_URL_API}rotos/${id}`, newData, {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ export const Rotos = () => {
 
   const deleteItem = async () => {
     try {
-      await axios.delete(`https://backlacentral.onrender.com/api/rotos/${idDelete}`, {
+      await axios.delete(`${process.env.REACT_APP_URL_API}rotos/${idDelete}`, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
@@ -164,13 +164,13 @@ export const Rotos = () => {
 
   useEffect(() => {
     getData()
-    setToken(localStorage.getItem('tokensantarosa30') || '')
+    setToken(localStorage.getItem(process.env.REACT_APP_TOKENID) || '')
   }, [])
 
 
   return (
     <div>
-      {token != '' ?
+      {token !== '' ?
         <div className="container">
           <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">

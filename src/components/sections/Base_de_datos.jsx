@@ -33,7 +33,7 @@ export const DDBB = () => {
 
   const [idDelete, setIdDelete] = useState('')
 
-  const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
+  const [token, setToken] = useState(localStorage.getItem(process.env.REACT_APP_TOKENID) || '')
 
   const [user, setUser] = useState(localStorage.getItem('user') || '')
 
@@ -47,7 +47,7 @@ export const DDBB = () => {
 
   const getData = async () => {
     try {
-      const res = await axios.get('https://backlacentral.onrender.com/api/general',
+      const res = await axios.get(`${process.env.REACT_APP_URL_API}general`,
         {
           withCredentials: true,
           headers: {
@@ -59,7 +59,7 @@ export const DDBB = () => {
       setData(dataRes)
     } catch (error) {
       console.error(error)
-      localStorage.removeItem('tokensantarosa30')
+      localStorage.removeItem(process.env.REACT_APP_TOKENID)
       navigate('/login')
     }
   }
@@ -99,7 +99,7 @@ export const DDBB = () => {
             modelo: modelo,
             local: local
           }
-          await axios.post('https://backlacentral.onrender.com/api/general', newData, {
+          await axios.post(`${process.env.REACT_APP_URL_API}general`, newData, {
             withCredentials: true,
             headers: {
               'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ export const DDBB = () => {
           modelo: modelo,
           local: local
         }
-        await axios.put(`https://backlacentral.onrender.com/api/general/${id}`, newData, {
+        await axios.put(`${process.env.REACT_APP_URL_API}general/${id}`, newData, {
           withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ export const DDBB = () => {
 
   const deleteItem = async (id) => {
     try {
-      await axios.delete(`https://backlacentral.onrender.com/api/general/${idDelete}`, {
+      await axios.delete(`${process.env.REACT_APP_URL_API}general/${idDelete}`, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
@@ -175,13 +175,13 @@ export const DDBB = () => {
 
   useEffect(() => {
     getData()
-    setToken(localStorage.getItem('tokensantarosa30') || '')
+    setToken(localStorage.getItem(process.env.REACT_APP_TOKENID) || '')
   }, [])
 
 
   return (
     <div>
-      {token != '' ?
+      {token !=='' ?
         <div className="container">
           <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">

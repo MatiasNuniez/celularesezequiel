@@ -3,21 +3,23 @@ import imgPrestados from '../../assets/img-celulares-prestados.jpg'
 import imgGeneral from '../../assets/img-datos-general.jpg'
 import imgRotos from '../../assets/rotos.jpg'
 import { useNavigate } from 'react-router-dom'
-import { navbar } from '../navbar/navbar'
 
 export const OptionsIndex = () => {
 
-  const [token, setToken] = useState(localStorage.getItem('tokensantarosa30') || '')
+  const [token, setToken] = useState(localStorage.getItem(process.env.REACT_APP_TOKENID) || '')
 
   useEffect(() => {
-    setToken(localStorage.getItem('tokensantarosa30') || '')
+    setToken(localStorage.getItem(process.env.REACT_APP_TOKENID) || '')
+    console.log(token);
   }, [])
+
+  console.log(token);
 
   const navigate = new useNavigate()
 
   return (
     <div>
-      {token != '' ?
+      {token !== '' ?
         <div className='container'>
           <div className='contentIndex'>
             <a className='aCardIndex' href="/Base_de_datos">

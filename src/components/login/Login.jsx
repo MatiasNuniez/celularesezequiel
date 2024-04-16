@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export const Login = () => {
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
-    const [token, setToken] = useState(localStorage.getItem('token') || '')
+    const [token, setToken] = useState(localStorage.getItem(process.env.REACT_APP_TOKENID) || '')
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -16,7 +16,7 @@ export const Login = () => {
                 const res = await axios({
                     method: 'post',
                     withCredentials: true,
-                    url: 'https://backlacentral.onrender.com/api/login',
+                    url: `${process.env.REACT_APP_URL_API}login`,
                     data: {
                         user: user,
                         password: password
@@ -25,7 +25,7 @@ export const Login = () => {
                 const data = await res.data
                 console.log(data);
                 if (data.token !== undefined) {
-                    localStorage.setItem('tokensantarosa30', data.token)
+                    localStorage.setItem(process.env.REACT_APP_TOKENID, data.token)
                     navigate('/')
                 } else {
                     alert('Usuario o contrasena invalidos')
@@ -39,7 +39,7 @@ export const Login = () => {
     }
 
     useEffect(() => {
-        setToken(localStorage.getItem('tokensantarosa30'))
+        setToken(localStorage.getItem(process.env.REACT_APP_TOKENID) || '')
     }, [])
 
     return (
