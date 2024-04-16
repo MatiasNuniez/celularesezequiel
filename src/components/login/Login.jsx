@@ -44,7 +44,7 @@ export const Login = () => {
 
     return (
         <div className='container'>
-            {token !== null ?
+            {token !='' ?
                 navigate('/')
                 :
                 <div className="row justify-content-center">

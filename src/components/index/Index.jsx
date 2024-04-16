@@ -19,7 +19,7 @@ export const OptionsIndex = () => {
 
   return (
     <div>
-      {token !== '' ?
+      {token != '' ?
         <div className='container'>
           <div className='contentIndex'>
             <a className='aCardIndex' href="/Base_de_datos">
